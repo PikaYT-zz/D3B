@@ -1,0 +1,13 @@
+canvas#output-canvas {
+    background-color: black;
+}
+
+video#camera-stream {
+    background-color: black;
+    visibility: hidden;
+}
+
+canvas#hidden-canvas {
+    display: none;
+    visibility: hidden;
+}
