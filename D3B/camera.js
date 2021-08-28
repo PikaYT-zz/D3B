@@ -31,7 +31,6 @@ const getAverageRGB = (frame) => {
     };
 };
 
-//const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>';
 const charset = 'D3B';
 
 const processFrame = () => {
@@ -59,9 +58,8 @@ const processFrame = () => {
                 const { r, g, b } = getAverageRGB(frameSection);
                 const randomCharacter = charset[Math.floor(Math.random() * charset.length)];
                 if (r, g, b != 0) {
-                    outputContext.fillStyle = `rgb(${r},${g},${b})`;
-                    //outputContext.fillStyle = `rgb(${0},${g},${0})`;
-                    //outputContext.fillRect(x, y, fontWidth, fontHeight);
+                    //outputContext.fillStyle = `rgb(${r},${g},${b})`; RGB
+                    outputContext.fillStyle = `rgb(${0},${g},${0})`; // Only green
                     outputContext.fillText(randomCharacter, x, y);
                 } else {
                     //console.log("Ignored!")
@@ -86,72 +84,7 @@ if (navigator.mediaDevices.getUserMedia) {
         });
 }
 
-// navigator.mediaDevices.getUserMedia(constraints, function(stream) {
-//     video.srcObject = stream;
-//     video.play();
-// }, function(err) {
-//     console.error(err);
-// });
-
 video.addEventListener('play', function() {
     window.requestAnimationFrame(processFrame);
     console.log('Live!');
 });
-
-
-// const video = document.querySelector('#videoElement');
-// const hiddenCanvas = document.querySelector('#hidden-canvas');
-// const outputCanvas = document.querySelector('#output-canvas');
-// const hiddenContext = hiddenCanvas.getContext('2d');
-// const outputContext = outputCanvas.getContext('2d');
-
-// const processFrame = () => {
-//     const { videoWidth: width, videoHeight: height } = video;
-//     const fontHeight = 12;
-
-//     if (width && height) {
-//         hiddenCanvas.width = width;
-//         hiddenCanvas.height = height;
-//         outputCanvas.width = width;
-//         outputCanvas.height = height;
-//         hiddenContext.drawImage(video, 0, 0, width, height);
-
-//         outputContext.textBaseline = 'top';
-//         outputContext.font = `${fontHeight}px Consolas`;
-
-//         const text = outputContext.measureText('@');
-//         const fontWidth = parseInt(text.width);
-
-//         // get frame from hiddenContext
-//         // apply filter
-//         // draw outputContext
-//     }
-
-//     window.requestAnimationFrame(processFrame);
-// };
-
-// if (navigator.mediaDevices.getUserMedia) {
-//     navigator.mediaDevices.getUserMedia({
-//             video: true
-//         })
-//         .then(function(stream) {
-//             video.srcObject = stream;
-//         })
-//         .catch(function(err0r) {
-//             console.log("Something went wrong!");
-//         });
-// }
-
-
-
-// function stop(e) {
-//     var stream = video.srcObject;
-//     var tracks = stream.getTracks();
-
-//     for (var i = 0; i < tracks.length; i++) {
-//         var track = tracks[i];
-//         track.stop();
-//     }
-
-//     video.srcObject = null;
-//}
